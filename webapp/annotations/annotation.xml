@@ -1,0 +1,553 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+  <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+    <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
+    <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="/sap/opu/odata/sap/ZC_DASHBOARD1_QUERY_CDS/$metadata">
+    <edmx:Include Namespace="ZC_DASHBOARD1_QUERY_CDS" Alias="SAP"/>
+  </edmx:Reference>
+
+  <edmx:DataServices>
+    <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="local">
+      <Annotations Target="ZC_DASHBOARD1_QUERY_CDS.ZC_DASHBOARD1_QUERYType">
+
+        <!-- ══════ KPI 1 — Contrats actifs ══════ -->
+        <Annotation Term="UI.DataPoint" Qualifier="ContractCountKPI">
+          <Record Type="UI.DataPointType">
+            <PropertyValue Property="Value" Path="Nombre_Contrats"/>
+            <PropertyValue Property="Title" String="Contrats actifs"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.KPI" Qualifier="ContractCountKPI">
+          <Record Type="UI.KPIType">
+            <PropertyValue Property="DataPoint" Path="@UI.DataPoint#ContractCountKPI"/>
+            <PropertyValue Property="ID" String="ContractCountKPI"/>
+            <PropertyValue Property="Detail">
+              <Record Type="UI.KPIDetailType">
+                <PropertyValue Property="DefaultPresentationVariant">
+                  <Record Type="UI.PresentationVariantType">
+                    <PropertyValue Property="Visualizations">
+                      <Collection>
+                        <AnnotationPath>@UI.Chart#TendanceRecouvrement</AnnotationPath>
+                      </Collection>
+                    </PropertyValue>
+                  </Record>
+                </PropertyValue>
+              </Record>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+
+        <!-- ══════ KPI 2 — Factures impayées ══════ -->
+        <Annotation Term="UI.DataPoint" Qualifier="UnpaidKPI">
+          <Record Type="UI.DataPointType">
+            <PropertyValue Property="Value" Path="Relance_impaye"/>
+            <PropertyValue Property="Title" String="Factures impayées"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.KPI" Qualifier="UnpaidKPI">
+          <Record Type="UI.KPIType">
+            <PropertyValue Property="DataPoint" Path="@UI.DataPoint#UnpaidKPI"/>
+            <PropertyValue Property="ID" String="UnpaidKPI"/>
+            <PropertyValue Property="Detail">
+              <Record Type="UI.KPIDetailType">
+                <PropertyValue Property="DefaultPresentationVariant">
+                  <Record Type="UI.PresentationVariantType">
+                    <PropertyValue Property="Visualizations">
+                      <Collection>
+                        <AnnotationPath>@UI.Chart#TendanceRecouvrement</AnnotationPath>
+                      </Collection>
+                    </PropertyValue>
+                  </Record>
+                </PropertyValue>
+              </Record>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+
+        <!-- ══════ KPI 3 — Recouvrés après relance ══════ -->
+        <Annotation Term="UI.DataPoint" Qualifier="RecoveryReminderKPI">
+          <Record Type="UI.DataPointType">
+            <PropertyValue Property="Value" Path="Relance_paye"/>
+            <PropertyValue Property="Title" String="Recouvrés après relance"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.KPI" Qualifier="RecoveryReminderKPI">
+          <Record Type="UI.KPIType">
+            <PropertyValue Property="DataPoint" Path="@UI.DataPoint#RecoveryReminderKPI"/>
+            <PropertyValue Property="ID" String="RecoveryReminderKPI"/>
+            <PropertyValue Property="Detail">
+              <Record Type="UI.KPIDetailType">
+                <PropertyValue Property="DefaultPresentationVariant">
+                  <Record Type="UI.PresentationVariantType">
+                    <PropertyValue Property="Visualizations">
+                      <Collection>
+                        <AnnotationPath>@UI.Chart#TendanceRecouvrement</AnnotationPath>
+                      </Collection>
+                    </PropertyValue>
+                  </Record>
+                </PropertyValue>
+              </Record>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+
+        <!-- ══════ KPI 4 — Recouvrés après cession ══════ -->
+        <Annotation Term="UI.DataPoint" Qualifier="RecoveryCessionKPI">
+          <Record Type="UI.DataPointType">
+            <PropertyValue Property="Value" Path="Cede_paye"/>
+            <PropertyValue Property="Title" String="Recouvrés après cession"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.KPI" Qualifier="RecoveryCessionKPI">
+          <Record Type="UI.KPIType">
+            <PropertyValue Property="DataPoint" Path="@UI.DataPoint#RecoveryCessionKPI"/>
+            <PropertyValue Property="ID" String="RecoveryCessionKPI"/>
+            <PropertyValue Property="Detail">
+              <Record Type="UI.KPIDetailType">
+                <PropertyValue Property="DefaultPresentationVariant">
+                  <Record Type="UI.PresentationVariantType">
+                    <PropertyValue Property="Visualizations">
+                      <Collection>
+                        <AnnotationPath>@UI.Chart#TendanceRecouvrement</AnnotationPath>
+                      </Collection>
+                    </PropertyValue>
+                  </Record>
+                </PropertyValue>
+              </Record>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+
+        <!-- ══════ KPI 5 — Taux relance ══════ -->
+        <Annotation Term="UI.DataPoint" Qualifier="RateReminderKPI">
+          <Record Type="UI.DataPointType">
+            <PropertyValue Property="Value" Path="Taux_Paiement_Relance"/>
+            <PropertyValue Property="Title" String="Tx Relance"/>
+            <PropertyValue Property="Unit" String="%"/>
+            <PropertyValue Property="CriticalityCalculation">
+              <Record Type="UI.CriticalityCalculationType">
+                <PropertyValue Property="ImprovementDirection" EnumMember="UI.ImprovementDirectionType/Maximize"/>
+                <PropertyValue Property="ToleranceRangeLowValue" Decimal="20"/>
+                <PropertyValue Property="AcceptanceRangeLowValue" Decimal="50"/>
+              </Record>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.KPI" Qualifier="RateReminderKPI">
+          <Record Type="UI.KPIType">
+            <PropertyValue Property="DataPoint" Path="@UI.DataPoint#RateReminderKPI"/>
+            <PropertyValue Property="ID" String="RateReminderKPI"/>
+            <PropertyValue Property="Detail">
+              <Record Type="UI.KPIDetailType">
+                <PropertyValue Property="DefaultPresentationVariant">
+                  <Record Type="UI.PresentationVariantType">
+                    <PropertyValue Property="Visualizations">
+                      <Collection>
+                        <AnnotationPath>@UI.Chart#TendanceRecouvrement</AnnotationPath>
+                      </Collection>
+                    </PropertyValue>
+                  </Record>
+                </PropertyValue>
+              </Record>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+
+        <!-- ══════ KPI 6 — Taux cession ══════ -->
+        <Annotation Term="UI.DataPoint" Qualifier="RateCessionKPI">
+          <Record Type="UI.DataPointType">
+            <PropertyValue Property="Value" Path="Taux_Paiement_Cession"/>
+            <PropertyValue Property="Title" String="Tx Cession"/>
+            <PropertyValue Property="Unit" String="%"/>
+            <PropertyValue Property="CriticalityCalculation">
+              <Record Type="UI.CriticalityCalculationType">
+                <PropertyValue Property="ImprovementDirection" EnumMember="UI.ImprovementDirectionType/Maximize"/>
+                <PropertyValue Property="ToleranceRangeLowValue" Decimal="20"/>
+                <PropertyValue Property="AcceptanceRangeLowValue" Decimal="50"/>
+              </Record>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.KPI" Qualifier="RateCessionKPI">
+          <Record Type="UI.KPIType">
+            <PropertyValue Property="DataPoint" Path="@UI.DataPoint#RateCessionKPI"/>
+            <PropertyValue Property="ID" String="RateCessionKPI"/>
+            <PropertyValue Property="Detail">
+              <Record Type="UI.KPIDetailType">
+                <PropertyValue Property="DefaultPresentationVariant">
+                  <Record Type="UI.PresentationVariantType">
+                    <PropertyValue Property="Visualizations">
+                      <Collection>
+                        <AnnotationPath>@UI.Chart#TendanceRecouvrement</AnnotationPath>
+                      </Collection>
+                    </PropertyValue>
+                  </Record>
+                </PropertyValue>
+              </Record>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+
+        <!-- ══════ MAIN CHART — Tendance de recouvrement ══════ -->
+        <Annotation Term="UI.Chart" Qualifier="TendanceRecouvrement">
+          <Record Type="UI.ChartDefinitionType">
+            <PropertyValue Property="Title" String="Tendance de recouvrement mensuelle"/>
+            <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Line"/>
+            <PropertyValue Property="Dimensions">
+              <Collection>
+                <PropertyPath>Mois_Annee</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="DimensionAttributes">
+              <Collection>
+                <Record Type="UI.ChartDimensionAttributeType">
+                  <PropertyValue Property="Dimension" PropertyPath="Mois_Annee"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="Measures">
+              <Collection>
+                <PropertyPath>Paye_spontanement</PropertyPath>
+                <PropertyPath>Relance_paye</PropertyPath>
+                <PropertyPath>Cede_paye</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="MeasureAttributes">
+              <Collection>
+                <Record Type="UI.ChartMeasureAttributeType">
+                  <PropertyValue Property="Measure" PropertyPath="Paye_spontanement"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+                </Record>
+                <Record Type="UI.ChartMeasureAttributeType">
+                  <PropertyValue Property="Measure" PropertyPath="Relance_paye"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+                </Record>
+                <Record Type="UI.ChartMeasureAttributeType">
+                  <PropertyValue Property="Measure" PropertyPath="Cede_paye"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+
+        <!-- ══════ MAIN PRESENTATION VARIANT ══════ -->
+        <Annotation Term="UI.PresentationVariant">
+          <Record Type="UI.PresentationVariantType">
+            <PropertyValue Property="SortOrder">
+              <Collection>
+                <Record Type="Common.SortOrderType">
+                  <PropertyValue Property="Property" PropertyPath="Mois_Annee"/>
+                  <PropertyValue Property="Descending" Bool="false"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="Visualizations">
+              <Collection>
+                <AnnotationPath>@UI.Chart#TendanceRecouvrement</AnnotationPath>
+                <AnnotationPath>@UI.LineItem</AnnotationPath>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+
+        <!-- ══════ VF1 — Répartition par division (donut) ══════ -->
+        <Annotation Term="UI.Chart" Qualifier="VFRepartitionDivision">
+          <Record Type="UI.ChartDefinitionType">
+            <PropertyValue Property="Title" String="Répartition par division"/>
+            <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Donut"/>
+            <PropertyValue Property="Dimensions">
+              <Collection>
+                <PropertyPath>Division</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="DimensionAttributes">
+              <Collection>
+                <Record Type="UI.ChartDimensionAttributeType">
+                  <PropertyValue Property="Dimension" PropertyPath="Division"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="Measures">
+              <Collection>
+                <PropertyPath>Nombre_Contrats</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="MeasureAttributes">
+              <Collection>
+                <Record Type="UI.ChartMeasureAttributeType">
+                  <PropertyValue Property="Measure" PropertyPath="Nombre_Contrats"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.PresentationVariant" Qualifier="VFRepartitionDivision">
+          <Record Type="UI.PresentationVariantType">
+            <PropertyValue Property="Visualizations">
+              <Collection>
+                <AnnotationPath>@UI.Chart#VFRepartitionDivision</AnnotationPath>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.SelectionVariant" Qualifier="VFRepartitionDivision">
+          <Record Type="UI.SelectionVariantType">
+            <PropertyValue Property="SelectOptions"><Collection/></PropertyValue>
+          </Record>
+        </Annotation>
+
+        <!-- ══════ VF2 — Évolution annuelle (line) ══════ -->
+        <Annotation Term="UI.Chart" Qualifier="VFEvolutionAnnuelle">
+          <Record Type="UI.ChartDefinitionType">
+            <PropertyValue Property="Title" String="Évolution annuelle"/>
+            <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Line"/>
+            <PropertyValue Property="Dimensions">
+              <Collection>
+                <PropertyPath>Annee_Paiement</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="DimensionAttributes">
+              <Collection>
+                <Record Type="UI.ChartDimensionAttributeType">
+                  <PropertyValue Property="Dimension" PropertyPath="Annee_Paiement"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="Measures">
+              <Collection>
+                <PropertyPath>Nombre_Contrats</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="MeasureAttributes">
+              <Collection>
+                <Record Type="UI.ChartMeasureAttributeType">
+                  <PropertyValue Property="Measure" PropertyPath="Nombre_Contrats"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.PresentationVariant" Qualifier="VFEvolutionAnnuelle">
+          <Record Type="UI.PresentationVariantType">
+            <PropertyValue Property="SortOrder">
+              <Collection>
+                <Record Type="Common.SortOrderType">
+                  <PropertyValue Property="Property" PropertyPath="Annee_Paiement"/>
+                  <PropertyValue Property="Descending" Bool="false"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="Visualizations">
+              <Collection>
+                <AnnotationPath>@UI.Chart#VFEvolutionAnnuelle</AnnotationPath>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.SelectionVariant" Qualifier="VFEvolutionAnnuelle">
+          <Record Type="UI.SelectionVariantType">
+            <PropertyValue Property="SelectOptions"><Collection/></PropertyValue>
+          </Record>
+        </Annotation>
+
+        <!-- ══════ VF3 — Délai de paiement après relance par BP (bar) ══════ -->
+        <Annotation Term="UI.Chart" Qualifier="VFDelaiParBP">
+          <Record Type="UI.ChartDefinitionType">
+            <PropertyValue Property="Title" String="Délai de paiement après relance par BP"/>
+            <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Bar"/>
+            <PropertyValue Property="Dimensions">
+              <Collection>
+                <PropertyPath>Partenaire</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="DimensionAttributes">
+              <Collection>
+                <Record Type="UI.ChartDimensionAttributeType">
+                  <PropertyValue Property="Dimension" PropertyPath="Partenaire"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="Measures">
+              <Collection>
+                <PropertyPath>Jours_Paiement_Apres_Relance</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="MeasureAttributes">
+              <Collection>
+                <Record Type="UI.ChartMeasureAttributeType">
+                  <PropertyValue Property="Measure" PropertyPath="Jours_Paiement_Apres_Relance"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.PresentationVariant" Qualifier="VFDelaiParBP">
+          <Record Type="UI.PresentationVariantType">
+            <PropertyValue Property="SortOrder">
+              <Collection>
+                <Record Type="Common.SortOrderType">
+                  <PropertyValue Property="Property" PropertyPath="Jours_Paiement_Apres_Relance"/>
+                  <PropertyValue Property="Descending" Bool="true"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="Visualizations">
+              <Collection>
+                <AnnotationPath>@UI.Chart#VFDelaiParBP</AnnotationPath>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.SelectionVariant" Qualifier="VFDelaiParBP">
+          <Record Type="UI.SelectionVariantType">
+            <PropertyValue Property="SelectOptions"><Collection/></PropertyValue>
+          </Record>
+        </Annotation>
+
+        <!-- ══════ VF4 — Évolution des relances par mois (line) ══════ -->
+        <Annotation Term="UI.Chart" Qualifier="VFEvolutionRelances">
+          <Record Type="UI.ChartDefinitionType">
+            <PropertyValue Property="Title" String="Évolution des relances par mois"/>
+            <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Line"/>
+            <PropertyValue Property="Dimensions">
+              <Collection>
+                <PropertyPath>Mois_Annee</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="DimensionAttributes">
+              <Collection>
+                <Record Type="UI.ChartDimensionAttributeType">
+                  <PropertyValue Property="Dimension" PropertyPath="Mois_Annee"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="Measures">
+              <Collection>
+                <PropertyPath>Total_Relance</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="MeasureAttributes">
+              <Collection>
+                <Record Type="UI.ChartMeasureAttributeType">
+                  <PropertyValue Property="Measure" PropertyPath="Total_Relance"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.PresentationVariant" Qualifier="VFEvolutionRelances">
+          <Record Type="UI.PresentationVariantType">
+            <PropertyValue Property="SortOrder">
+              <Collection>
+                <Record Type="Common.SortOrderType">
+                  <PropertyValue Property="Property" PropertyPath="Mois_Annee"/>
+                  <PropertyValue Property="Descending" Bool="false"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="Visualizations">
+              <Collection>
+                <AnnotationPath>@UI.Chart#VFEvolutionRelances</AnnotationPath>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.SelectionVariant" Qualifier="VFEvolutionRelances">
+          <Record Type="UI.SelectionVariantType">
+            <PropertyValue Property="SelectOptions"><Collection/></PropertyValue>
+          </Record>
+        </Annotation>
+
+      </Annotations>
+
+      <!-- ══════ ValueList wiring ══════ -->
+
+      <!-- Division → donut répartition (VF1) -->
+      <Annotations Target="ZC_DASHBOARD1_QUERY_CDS.ZC_DASHBOARD1_QUERYType/Division">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="ZC_DASHBOARD1_QUERY"/>
+            <PropertyValue Property="PresentationVariantQualifier" String="VFRepartitionDivision"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="Division"/>
+                  <PropertyValue Property="ValueListProperty" String="Division"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations>
+
+      <!-- Annee_Paiement → line évolution annuelle (VF2) -->
+      <Annotations Target="ZC_DASHBOARD1_QUERY_CDS.ZC_DASHBOARD1_QUERYType/Annee_Paiement">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="ZC_DASHBOARD1_QUERY"/>
+            <PropertyValue Property="PresentationVariantQualifier" String="VFEvolutionAnnuelle"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="Annee_Paiement"/>
+                  <PropertyValue Property="ValueListProperty" String="Annee_Paiement"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations>
+
+      <!-- Partenaire → bar délai par BP (VF3) -->
+      <Annotations Target="ZC_DASHBOARD1_QUERY_CDS.ZC_DASHBOARD1_QUERYType/Partenaire">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="ZC_DASHBOARD1_QUERY"/>
+            <PropertyValue Property="PresentationVariantQualifier" String="VFDelaiParBP"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="Partenaire"/>
+                  <PropertyValue Property="ValueListProperty" String="Partenaire"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations>
+
+      <!-- Mois_Annee → line évolution relances (VF4) -->
+      <Annotations Target="ZC_DASHBOARD1_QUERY_CDS.ZC_DASHBOARD1_QUERYType/Mois_Annee">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="ZC_DASHBOARD1_QUERY"/>
+            <PropertyValue Property="PresentationVariantQualifier" String="VFEvolutionRelances"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="Mois_Annee"/>
+                  <PropertyValue Property="ValueListProperty" String="Mois_Annee"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations>
+
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>

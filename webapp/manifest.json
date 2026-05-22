@@ -1,0 +1,215 @@
+{
+  "_version": "1.83.0",
+  "sap.app": {
+    "id": "com.iliade.dash11.dash11",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:alp",
+      "version": "1.23.0",
+      "toolsId": "b663f716-8933-4dcc-89b1-bd7347cc0e32"
+    },
+    "dataSources": {
+      "ZC_DASHBOARD1_QUERY_CDS_VAN": {
+        "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZC_DASHBOARD1_QUERY_CDS_VAN',Version='0001')/$value/",
+        "type": "ODataAnnotation",
+        "settings": {
+          "localUri": "localService/mainService/ZC_DASHBOARD1_QUERY_CDS_VAN.xml"
+        }
+      },
+      "annotation": {
+        "type": "ODataAnnotation",
+        "uri": "annotations/annotation.xml",
+        "settings": {
+          "localUri": "annotations/annotation.xml"
+        }
+      },
+      "mainService": {
+        "uri": "/sap/opu/odata/sap/ZC_DASHBOARD1_QUERY_CDS/",
+        "type": "OData",
+        "settings": {
+          "annotations": [
+            "ZC_DASHBOARD1_QUERY_CDS_VAN",
+            "annotation"
+          ],
+          "localUri": "localService/mainService/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "intent1": {
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          },
+          "semanticObject": "Dashboard",
+          "action": "display",
+          "title": "Vue Globale",
+          "icon": "sap-icon://home"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.147.2",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.ushell": {},
+        "sap.f": {},
+        "sap.ui.comp": {},
+        "sap.ui.generic.app": {},
+        "sap.suite.ui.generic.template": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "com.iliade.dash11.dash11.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "defaultBindingMode": "TwoWay",
+          "defaultCountMode": "Inline",
+          "refreshAfterChange": false,
+          "metadataUrlParams": {
+            "sap-value-list": "none"
+          }
+        }
+      },
+      "@i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      }
+    },
+    "resources": {
+      "css": []
+    },
+    "routing": {
+      "config": {},
+      "routes": [],
+      "targets": {}
+    }
+  },
+  "sap.ui.generic.app": {
+    "_version": "1.3.0",
+    "settings": {
+      "forceGlobalRefresh": false,
+      "objectPageHeaderType": "Dynamic",
+      "considerAnalyticalParameters": true,
+      "showDraftToggle": false
+    },
+    "pages": {
+      "AnalyticalListPage|ZC_DASHBOARD1_QUERY": {
+        "entitySet": "ZC_DASHBOARD1_QUERY",
+        "component": {
+          "name": "sap.suite.ui.generic.template.AnalyticalListPage",
+          "list": true,
+          "settings": {
+            "condensedTableLayout": true,
+            "showGoButtonOnFilterBar": false,
+            "autoHide": true,
+            "smartVariantManagement": false,
+            "defaultContentView": "charttable",
+            "tableSettings": {
+              "multiSelect": false,
+              "type": "AnalyticalTable"
+            },
+            "filterSettings": {
+              "hideBasicSearch": false
+            },
+            "keyPerformanceIndicators": {
+              "ContractCountKPI": {
+                "model": "",
+                "entitySet": "ZC_DASHBOARD1_QUERY",
+                "qualifier": "ContractCountKPI",
+                "filterable": true
+              },
+              "UnpaidKPI": {
+                "model": "",
+                "entitySet": "ZC_DASHBOARD1_QUERY",
+                "qualifier": "UnpaidKPI",
+                "filterable": true
+              },
+              "RecoveryReminderKPI": {
+                "model": "",
+                "entitySet": "ZC_DASHBOARD1_QUERY",
+                "qualifier": "RecoveryReminderKPI",
+                "filterable": true
+              },
+              "RecoveryCessionKPI": {
+                "model": "",
+                "entitySet": "ZC_DASHBOARD1_QUERY",
+                "qualifier": "RecoveryCessionKPI",
+                "filterable": true
+              },
+              "RateReminderKPI": {
+                "model": "",
+                "entitySet": "ZC_DASHBOARD1_QUERY",
+                "qualifier": "RateReminderKPI",
+                "filterable": true
+              },
+              "RateCessionKPI": {
+                "model": "",
+                "entitySet": "ZC_DASHBOARD1_QUERY",
+                "qualifier": "RateCessionKPI",
+                "filterable": true
+              }
+            }
+          }
+        },
+        "pages": {
+          "ObjectPage|ZC_DASHBOARD1_QUERY": {
+            "entitySet": "ZC_DASHBOARD1_QUERY",
+            "defaultLayoutTypeIfExternalNavigation": "MidColumnFullScreen",
+            "component": {
+              "name": "sap.suite.ui.generic.template.ObjectPage"
+            }
+          }
+        }
+      }
+    }
+  },
+  "sap.fiori": {
+    "registrationIds": [],
+    "archeType": "analytical"
+  },
+  "sap.cloud": {
+    "public": true,
+    "service": "comiliadedash11dash11"
+  }
+}

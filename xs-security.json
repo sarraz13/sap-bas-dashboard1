@@ -1,0 +1,7 @@
+{
+  "xsappname": "comiliadedash11dash11",
+  "tenant-mode": "dedicated",
+  "description": "Security profile of called application",
+  "scopes": [],
+  "role-templates": []
+}

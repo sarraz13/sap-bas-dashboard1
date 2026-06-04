@@ -7,7 +7,7 @@
 |**Generation Platform**<br>SAP Business Application Studio|
 |**Template Used**<br>Analytical List Page V2|
 |**Service Type**<br>SAP System (ABAP On-Premise)|
-|**Service URL**<br>http://sarra.iliadeconsulting.com:8000/sap/opu/odata/sap/ZC_DASH11_QUERY_CDS|
+|**Service URL**<br>http://****:8000/sap/opu/odata/sap/ZC_DASH11_QUERY_CDS|
 |**Module Name**<br>dash11|
 |**Application Title**<br>Vue globale|
 |**Namespace**<br>com.iliade.dash11|
